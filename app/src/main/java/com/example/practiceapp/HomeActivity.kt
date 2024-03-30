@@ -1,14 +1,15 @@
 package com.example.practiceapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import android.widget.ImageButton
 import android.widget.Button
-import android.net.Uri
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.ImageButton
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.practiceapp.data2.AppDataBase
 
 class HomeActivity : AppCompatActivity() {
 
@@ -18,10 +19,13 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var button1: ImageButton
     private lateinit var button2: ImageButton
     private lateinit var button3: Button
+    private lateinit var viewModel: SignInActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        viewModel = ViewModelProvider(this)[SignInActivityViewModel::class.java]
 
         textinstructions = findViewById(R.id.text_instructions)
         boldtextinstructions = findViewById(R.id.boldtext_instructions)
@@ -30,6 +34,15 @@ class HomeActivity : AppCompatActivity() {
         button1 = findViewById(R.id.button1)
         button2 = findViewById(R.id.button2)
         button3 = findViewById(R.id.button3)
+
+        val userId = intent.getIntExtra(USER_ID, USER_ID_NOT_SET)
+        if ( userId != USER_ID_NOT_SET) {
+            val db = AppDataBase.getInstance(this)
+            viewModel.updateUser(db.userDao().getUserById(userId))
+        }
+        val firstName = findViewById(R.id.text_welcome) as TextView
+        firstName.text = "Welcome, ${viewModel.user.value?.firstName}"
+
 
         button1.setOnClickListener(View.OnClickListener {
             if (textinstructions.getVisibility() == View.GONE) {

@@ -1,16 +1,15 @@
 package com.example.practiceapp
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.telephony.PhoneNumberUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
+import androidx.lifecycle.ViewModelProvider
 import com.example.practiceapp.data2.AppDataBase
+import com.example.practiceapp.data2.mockData.LoadMockData
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -28,8 +27,8 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var verifyphoneButton: Button
     private lateinit var signinButton: Button
     private lateinit var verificationId: String
+    private lateinit var viewModel: SignInActivityViewModel
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
@@ -39,15 +38,20 @@ class SignInActivity : AppCompatActivity() {
         verifyphoneButton = findViewById(R.id.verifyphone_button)
         signinButton = findViewById(R.id.signin_button)
 
-        val db = Room.databaseBuilder(applicationContext, AppDataBase::class.java, "bloodpressure.db")
-            .fallbackToDestructiveMigration()
-            .allowMainThreadQueries().build()
+        viewModel = ViewModelProvider(this)[SignInActivityViewModel::class.java]
+
+        val db =AppDataBase.getInstance(this)
+        //TODO: remove this line before submitting your project
+        LoadMockData().load(db)
 
         verifyphoneButton.setOnClickListener {
             if (signinPhone.text.toString().trim().isEmpty()) {
                 signinPhone.error = "Please enter valid phone number"
             } else {
                 val phone = "+1" + signinPhone.text.toString().trim { it <= ' ' }
+                val p = PhoneNumberUtils.formatNumber(signinPhone.text.toString(), "US")
+                val user = db.userDao().getUserByPhoneNumber(p)
+                viewModel.updateUser(user)
                 sendVerificationCode(phone)
             }
         }
@@ -60,9 +64,6 @@ class SignInActivity : AppCompatActivity() {
                 verifyCode(signinPassword.text.toString())
             }
         }
-
-        // testing
-        testDataBase(db)
     }
 
 
@@ -94,6 +95,7 @@ class SignInActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 // if the code is correct and the task is successful we are sending our user to new activity.
                 val i = Intent(this@SignInActivity, HomeActivity::class.java)
+                i.putExtra(USER_ID, viewModel.user.value?.userId)
                 startActivity(i)
                 finish()
             } else {
@@ -138,7 +140,9 @@ class SignInActivity : AppCompatActivity() {
             override fun onVerificationFailed(e: FirebaseException) {
                 // displaying error message with firebase exception.
                 //FIXME: Skipping over errors and going directly to HomeActivity
-                val i = Intent(this@SignInActivity, HomeActivity::class.java)
+
+                val i = Intent(this@SignInActivity, SecondActivity::class.java)
+                i.putExtra(USER_ID, viewModel.user.value?.userId)
                 startActivity(i)
                 finish()
 //                Toast.makeText(this@SignInActivity, e.message, Toast.LENGTH_LONG).show()
@@ -153,33 +157,5 @@ class SignInActivity : AppCompatActivity() {
             startActivity(Intent(this@SignInActivity, HomeActivity::class.java))
             finish()
         }
-    }
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun testDataBase(db: AppDataBase) {
-//        db.bloodPressureReadingDao().insertAll(
-//            BloodPressureReading(
-//                0,
-//                120,
-//                80,
-//                70,
-//                DateTypeConverters().toTimestamp(LocalDateTime.now())
-//            ),
-//            BloodPressureReading(
-//                0,
-//                130,
-//                90,
-//                80,
-//                DateTypeConverters().toTimestamp(LocalDateTime.now()),
-//            ),
-//            BloodPressureReading(
-//                0,
-//                140,
-//                100,
-//                90,
-//                DateTypeConverters().toTimestamp(LocalDateTime.now())
-//            )
-//        )
-        val readings = db.bloodPressureReadingDao().getAll()
-        Log.e("Readings", readings.toString())
     }
 }

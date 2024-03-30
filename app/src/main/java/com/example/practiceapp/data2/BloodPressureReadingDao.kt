@@ -15,5 +15,4 @@ interface BloodPressureReadingDao {
 
     @Delete
     fun delete(reading: BloodPressureReading)
-
 }
