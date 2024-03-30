@@ -1,13 +1,16 @@
 package com.example.practiceapp
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.View
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
+import com.example.practiceapp.data2.AppDataBase
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -26,6 +29,7 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var signinButton: Button
     private lateinit var verificationId: String
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
@@ -35,36 +39,42 @@ class SignInActivity : AppCompatActivity() {
         verifyphoneButton = findViewById(R.id.verifyphone_button)
         signinButton = findViewById(R.id.signin_button)
 
-        verifyphoneButton.setOnClickListener(View.OnClickListener {
-            if (TextUtils.isEmpty(signinPhone.text.toString())) {
-                signinPhone.setError("Please enter valid phone number")
+        val db = Room.databaseBuilder(applicationContext, AppDataBase::class.java, "bloodpressure.db")
+            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries().build()
+
+        verifyphoneButton.setOnClickListener {
+            if (signinPhone.text.toString().trim().isEmpty()) {
+                signinPhone.error = "Please enter valid phone number"
             } else {
                 val phone = "+1" + signinPhone.text.toString().trim { it <= ' ' }
                 sendVerificationCode(phone)
             }
-        })
-        signinButton.setOnClickListener(View.OnClickListener {
-            if (TextUtils.isEmpty(signinPassword.text.toString())) {
+        }
+        signinButton.setOnClickListener {
+            if (signinPassword.text.toString().isEmpty()) {
                 Toast.makeText(
-                    this@SignInActivity,
-                    "Please Enter One-Time Password",
-                    Toast.LENGTH_SHORT
+                    this@SignInActivity, "Please Enter One-Time Password", Toast.LENGTH_SHORT
                 ).show()
             } else {
                 verifyCode(signinPassword.text.toString())
             }
-        })
+        }
+
+        // testing
+        testDataBase(db)
     }
+
 
     private fun sendVerificationCode(number: String) {
         // this method is used for getting
         // OTP on user phone number.
-        val options = PhoneAuthOptions.newBuilder(auth)
-            .setPhoneNumber(number) // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-            .setActivity(this) // Activity (for callback binding)
-            .setCallbacks(mCallBack) // OnVerificationStateChangedCallbacks
-            .build()
+        val options =
+            PhoneAuthOptions.newBuilder(auth).setPhoneNumber(number) // Phone number to verify
+                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                .setActivity(this) // Activity (for callback binding)
+                .setCallbacks(mCallBack) // OnVerificationStateChangedCallbacks
+                .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
@@ -72,7 +82,7 @@ class SignInActivity : AppCompatActivity() {
     private fun verifyCode(code: String) {
         // below line is used for getting
         // credentials from our verification id and code.
-        val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
+        val credential = PhoneAuthProvider.getCredential(verificationId, code)
 
         // after getting credential we are calling sign in method.
         signInWithCredential(credential)
@@ -80,19 +90,18 @@ class SignInActivity : AppCompatActivity() {
 
     private fun signInWithCredential(credential: PhoneAuthCredential) {
         // inside this method we are checking if the code entered is correct or not.
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // if the code is correct and the task is successful we are sending our user to new activity.
-                    val i = Intent(this@SignInActivity, HomeActivity::class.java)
-                    startActivity(i)
-                    finish()
-                } else {
-                    // if the code is not correct then we are displaying an error message to the user.
-                    Toast.makeText(this@SignInActivity, task.exception!!.message, Toast.LENGTH_LONG)
-                        .show()
-                }
+        auth.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // if the code is correct and the task is successful we are sending our user to new activity.
+                val i = Intent(this@SignInActivity, HomeActivity::class.java)
+                startActivity(i)
+                finish()
+            } else {
+                // if the code is not correct then we are displaying an error message to the user.
+                Toast.makeText(this@SignInActivity, task.exception!!.message, Toast.LENGTH_LONG)
+                    .show()
             }
+        }
     }
 
     // callback method is called on Phone auth provider.
@@ -128,7 +137,11 @@ class SignInActivity : AppCompatActivity() {
             // sends our OTP code due to any error or issue.
             override fun onVerificationFailed(e: FirebaseException) {
                 // displaying error message with firebase exception.
-                Toast.makeText(this@SignInActivity, e.message, Toast.LENGTH_LONG).show()
+                //FIXME: Skipping over errors and going directly to HomeActivity
+                val i = Intent(this@SignInActivity, HomeActivity::class.java)
+                startActivity(i)
+                finish()
+//                Toast.makeText(this@SignInActivity, e.message, Toast.LENGTH_LONG).show()
             }
         }
 
@@ -140,5 +153,33 @@ class SignInActivity : AppCompatActivity() {
             startActivity(Intent(this@SignInActivity, HomeActivity::class.java))
             finish()
         }
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun testDataBase(db: AppDataBase) {
+//        db.bloodPressureReadingDao().insertAll(
+//            BloodPressureReading(
+//                0,
+//                120,
+//                80,
+//                70,
+//                DateTypeConverters().toTimestamp(LocalDateTime.now())
+//            ),
+//            BloodPressureReading(
+//                0,
+//                130,
+//                90,
+//                80,
+//                DateTypeConverters().toTimestamp(LocalDateTime.now()),
+//            ),
+//            BloodPressureReading(
+//                0,
+//                140,
+//                100,
+//                90,
+//                DateTypeConverters().toTimestamp(LocalDateTime.now())
+//            )
+//        )
+        val readings = db.bloodPressureReadingDao().getAll()
+        Log.e("Readings", readings.toString())
     }
 }

@@ -5,15 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.practiceapp.data.Note
 import com.example.practiceapp.data.NoteDao
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.lang.System.currentTimeMillis
 
 class BPViewModel(
     private val dao:NoteDao
@@ -26,7 +24,7 @@ class BPViewModel(
             if (sort) {
                 dao.getNotesOrderedByDateAdded()
             } else {
-                dao.getNotesOrderedByTitle()
+                dao.getNotes()
             }
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
@@ -66,10 +64,13 @@ class BPViewModel(
                 }
 
             }
-
             BPEvent.SortBPEvents -> {
                 isSortedByDateAdded.value = !isSortedByDateAdded.value
 
+            }
+            else -> {
+                // this is the BPCategory event
+                throw IllegalArgumentException("Event $event is not recognized.")
             }
         }
     }

@@ -8,11 +8,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 
 @Composable
 fun BPEventsScreen(
     state: BPState,
-    onBPEvent: (BPEvent) -> Unit
+    onBPEvent: (BPEvent) -> Unit,
+    navController: NavHostController
 ) {
     Scaffold(
         floatingActionButton = {

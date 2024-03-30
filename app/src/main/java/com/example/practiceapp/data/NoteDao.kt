@@ -18,6 +18,6 @@ interface NoteDao {
     @Query("SELECT * FROM note ORDER BY dateAdded")
     fun getNotesOrderedByDateAdded(): Flow<List<Note>>
 
-    @Query("SELECT * FROM note ORDER BY title ASC")
-    fun getNotesOrderedByTitle(): Flow<List<Note>>
+    @Query("SELECT * FROM note")
+    fun getNotes(): Flow<List<Note>>
 }

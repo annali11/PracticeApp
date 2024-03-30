@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Sign In"
+                android:text="@string/sign_in"
                 android:textColor="@color/grey"
                 android:textSize="36sp"
                 android:textStyle="bold"
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Please verify your phone number with a one time password."
+                android:text="@string/please_verify_your_phone_number_with_a_one_time_password"
                 android:textSize="18sp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
@@ -51,10 +51,12 @@
                 android:background="@drawable/custom_edittext"
                 android:layout_marginTop="20dp"
                 android:padding="8dp"
-                android:hint="Phone Number"
+                android:hint="@string/phone_number"
                 android:drawableStart="@drawable/ic_person"
                 android:drawablePadding="8dp"
-                android:textColor="@color/darkgrey"/>
+                android:textColor="@color/darkgrey"
+                android:autofillHints=""
+                android:inputType="phone" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -63,16 +65,18 @@
                 android:background="@drawable/custom_edittext"
                 android:layout_marginTop="30dp"
                 android:padding="8dp"
-                android:hint="One-Time Password"
+                android:hint="@string/one_time_password"
                 android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="8dp"
-                android:textColor="@color/darkgrey"/>
+                android:textColor="@color/darkgrey"
+                android:autofillHints=""
+                android:inputType="textPassword" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/verifyphone_button"
-                android:text="Receive One-Time Password"
+                android:text="@string/receive_one_time_password"
                 android:textSize="17sp"
                 android:layout_marginTop="25dp"
                 android:backgroundTint="@color/lavender"
@@ -83,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:id="@+id/signin_button"
-                android:text="Sign In"
+                android:text="@string/sign_in_button"
                 android:layout_gravity="center"
                 android:padding="15dp"
                 android:textSize="20sp"

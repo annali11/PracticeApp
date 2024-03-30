@@ -52,6 +52,23 @@
     <string name="settings_phys_phone">Phone Number: +234 (703)499-4045</string>
     <string name="change_pw">change password</string>
     <string name="change_phys">change physician</string>
+    <string name="sign_in">Sign In</string>
+    <string name="please_verify_your_phone_number_with_a_one_time_password">Please verify your phone number with a one time password.</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="one_time_password">One-Time Password</string>
+    <string name="receive_one_time_password">Receive One-Time Password</string>
+    <string name="sign_in_button">Sign In</string>
+    <string name="upload">TODO</string>
+    <string name="todo">TODO</string>
+    <string name="prev">prev</string>
+    <string name="next">next</string>
+    <string name="sunday_short">SUN</string>
+    <string name="monday_short">MON</string>
+    <string name="tuesday_short">TUE</string>
+    <string name="wednesday_short">WED</string>
+    <string name="thursday_short">THU</string>
+    <string name="friday_short">FRI</string>
+    <string name="saturday_short">SAT</string>
     <string-array name="languages">
         <item>English</item>
         <item>Hausa</item>

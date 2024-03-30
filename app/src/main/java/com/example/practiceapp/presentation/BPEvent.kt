@@ -3,7 +3,7 @@ package com.example.practiceapp.presentation
 import com.example.practiceapp.data.Note
 
 sealed interface BPEvent{
-    object SortBPEvents: BPEvent
+    data object SortBPEvents: BPEvent
 
     data class BPCategory(val category: String): BPEvent
 

@@ -1,34 +1,23 @@
 package com.example.practiceapp
 
 import android.os.Bundle
-import android.widget.CalendarView
-import android.widget.DatePicker
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import android.content.Intent
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.material3.MaterialTheme
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavHost
-import androidx.room.Room
-import com.example.practiceapp.data.BPDatabase
-import com.example.practiceapp.presentation.BPViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-
-import java.time.LocalDate
-import java.time.YearMonth
-import java.time.format.DateTimeFormatter
-import java.util.ArrayList
+import androidx.room.Room
+import com.example.practiceapp.data.BPDatabase
+import com.example.practiceapp.presentation.BPEvent
+import com.example.practiceapp.presentation.BPState
+import com.example.practiceapp.presentation.BPViewModel
+import kotlin.reflect.KFunction1
 
 //import com.example.practiceapp.CalenderUtils.daysInMonthArray
 //import com.example.practiceapp.CalenderUtils.monthYearFromDate
@@ -69,5 +58,13 @@ class ProfileActivity: AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun BPEventsScreen(
+        state: BPState,
+        navController: NavHostController,
+        onEvent: KFunction1<BPEvent, Unit>
+    ) {
+        TODO("Not yet implemented")
     }
 }
