@@ -40,7 +40,7 @@ class LoadMockData {
                 "Li",
                 "ali@example.com",
                 "password",
-                "(312) 123-4567",
+                "(206) 832-5558",
                 DateTypeConverters().toTimestamp(LocalDateTime.now())
             )
         )

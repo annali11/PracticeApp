@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".AddNewActivity">
+    tools:context=".AddNewActivity"
+    android:id="@+id/fragment_container"
+    android:name="android.navigation.fragment.NavHostFragment"
+    app:navGraph="@navigation/main_nav"
+    app:defaultNavHost="true">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -26,7 +30,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/fragmentContainer"
+        android:id="@+id/measureWindow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -57,7 +61,8 @@
                 android:textSize="30sp"
                 android:id="@+id/bpheading"
                 app:layout_constraintStart_toEndOf="@id/uploadbutton"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
                 android:layout_width="50dp"

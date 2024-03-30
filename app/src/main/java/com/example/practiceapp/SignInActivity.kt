@@ -141,7 +141,7 @@ class SignInActivity : AppCompatActivity() {
                 // displaying error message with firebase exception.
                 //FIXME: Skipping over errors and going directly to HomeActivity
 
-                val i = Intent(this@SignInActivity, SecondActivity::class.java)
+                val i = Intent(this@SignInActivity, HomeActivity::class.java)
                 i.putExtra(USER_ID, viewModel.user.value?.userId)
                 startActivity(i)
                 finish()

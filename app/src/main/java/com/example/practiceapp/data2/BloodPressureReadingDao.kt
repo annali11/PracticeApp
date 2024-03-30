@@ -10,6 +10,9 @@ interface BloodPressureReadingDao {
     @Query("SELECT * FROM BloodPressureReading")
     fun getAll(): List<BloodPressureReading>
 
+    @Query("SELECT * FROM BloodPressureReading WHERE userId = :userId")
+    fun getByUserId(userId: Int): List<BloodPressureReading>
+
     @Insert
     fun insertAll(vararg readings: BloodPressureReading)
 

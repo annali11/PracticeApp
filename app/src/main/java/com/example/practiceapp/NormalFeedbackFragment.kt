@@ -7,21 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.practiceapp.databinding.FragmentNormalFeedbackBinding
 
 class NormalFeedbackFragment : Fragment() {
+
+    private var _binding: FragmentNormalFeedbackBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val v = inflater.inflate(R.layout.fragment_normal_feedback, container, false)
+        _binding = FragmentNormalFeedbackBinding.inflate(inflater, container, false)
 
-        val backbutton = v.findViewById<Button>(R.id.backaddButtonNormal)
-        backbutton.setOnClickListener{
-            activity?.finish()
+        binding.backaddButtonNormal.setOnClickListener {
+            findNavController().navigate(R.id.action_normalFeedbackFragment_to_addNewActivity)
         }
-        return v
+        return binding.root
     }
+
 
 }
