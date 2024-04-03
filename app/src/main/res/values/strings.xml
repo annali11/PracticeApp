@@ -52,6 +52,7 @@
     <string name="settings_phys_phone">Phone Number: +234 (703)499-4045</string>
     <string name="change_pw">change password</string>
     <string name="change_phys">change physician</string>
+    <string name="empty_not_saved">Empty. Entry was not saved.</string>
     <string-array name="languages">
         <item>English</item>
         <item>Hausa</item>

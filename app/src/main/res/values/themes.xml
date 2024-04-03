@@ -25,4 +25,11 @@
         <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
     </style>
 
+    <style name="bp_title">
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:background">@color/lavender</item>
+        <item name="textAppearanceBodyLarge">@android:style/TextAppearance.Large</item>
+    </style>
+
 </resources>

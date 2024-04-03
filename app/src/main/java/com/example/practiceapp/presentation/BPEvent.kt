@@ -13,5 +13,6 @@ sealed interface BPEvent{
         val systolic: String,
         val diastolic: String,
         val heartrate: String,
+        val category: String,
     ): BPEvent
 }

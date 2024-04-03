@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/grey"
+            android:background="@color/lightgrey"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -57,7 +57,8 @@
                 android:textSize="30sp"
                 android:id="@+id/bpheading"
                 app:layout_constraintStart_toEndOf="@id/uploadbutton"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
                 android:layout_width="50dp"
