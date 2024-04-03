@@ -196,12 +196,14 @@
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_height="60dp"
+        android:layout_marginTop="10dp"
         android:layout_above="@id/bottomNavigationView"
         android:backgroundTint="@color/lavender"
         android:text="@string/add_new_data"
         android:textSize="25sp"
         app:cornerRadius="20dp"
         app:drawableLeftCompat="@drawable/ic_add_circle"
-        app:drawableTint="@color/white"/>
+        app:drawableTint="@color/white"
+        android:layout_below="@id/fragmentContainer"/>
 
 </RelativeLayout>
