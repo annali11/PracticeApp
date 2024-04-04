@@ -8,9 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practiceapp.data.Note
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.Calendar
 
 class BPListAdapter : ListAdapter<Note, BPListAdapter.BPViewHolder>(BPComparator()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BPViewHolder {
@@ -19,7 +16,7 @@ class BPListAdapter : ListAdapter<Note, BPListAdapter.BPViewHolder>(BPComparator
 
     override fun onBindViewHolder(holder: BPViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.systolic, current.diastolic)
+        holder.bind(current.systolic.toString(), current.diastolic.toString())
     }
 
     class BPViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
