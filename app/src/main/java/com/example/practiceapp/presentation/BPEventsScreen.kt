@@ -106,7 +106,7 @@ fun BPItem(
             modifier = Modifier.weight(1f)
         ) {
             Text(
-                text = state.bpevents[index].systolic + " / " + state.bpevents[index].diastolic,
+                text = state.bpevents[index].systolic.toString() + " / " + state.bpevents[index].diastolic.toString(),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSecondaryContainer

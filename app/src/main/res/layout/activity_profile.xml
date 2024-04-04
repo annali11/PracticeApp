@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProfileFragment"
+    tools:context=".ProfileActivity"
     android:background="@drawable/login_background2">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -25,16 +25,31 @@
         app:itemRippleColor="@android:color/transparent"
         app:labelVisibilityMode="unlabeled"/>
 
-    <TextView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/profileheader"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Past Entries"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingTop="10dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Past Entries"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/darkgrey"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/lavender"/>
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bpRecyclerView"

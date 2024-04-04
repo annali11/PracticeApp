@@ -9,6 +9,10 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -31,18 +35,26 @@
         android:supportsRtl="true"
         android:theme="@style/splashScreenTheme"
         tools:targetApi="31">
-
         <activity
-            android:name=".SettingsActivity"
+            android:name=".UserInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".EventEditActivity"
+            android:name=".SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".AddNewActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.INTENT_SENT_SMS_ACTION"/>
+                <action android:name="android.intent.action.INTENT_DELIVERED_SMS_ACTION"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".SecondActivity"
@@ -58,7 +70,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
