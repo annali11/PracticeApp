@@ -28,8 +28,7 @@
             android:background="@color/lavender"
             android:padding="10dp"
             android:text="@string/settings"
-            android:fontFamily="@font/gemunulibre_semibold"
-            android:textSize="50sp"
+            android:textSize="36sp"
             android:gravity="center"
             android:textColor="@color/white"/>
     </androidx.cardview.widget.CardView>
@@ -48,9 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/language_label"
-            android:textSize="25sp"
             android:inputType="none"
-            android:background="@color/lightgrey"/>
+            android:background="@color/white"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,128 +60,79 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_below="@id/languagelist"
-        app:cardCornerRadius="30dp">
+        android:background="@color/white"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/white">
-            <LinearLayout
+            android:background="@color/grey">
+
+            <TextView
+                android:id="@+id/settingname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/white">
-                <TextView
-                    android:id="@+id/settingname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name"
-                    android:textSize="22sp"
-                    android:padding="10dp"/>
-                <TextView
-                    android:id="@+id/patientname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="22sp"
-                    android:padding="10dp"/>
-            </LinearLayout>
+                android:text="@string/name"
+                android:textSize="30sp"
+                android:padding="10dp"/>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/patientid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/white">
-                <TextView
-                    android:id="@+id/settingphone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings_patient_phone"
-                    android:textSize="22sp"
-                    android:padding="10dp"/>
-                <TextView
-                    android:id="@+id/patientphone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="22sp"
-                    android:padding="10dp"/>
-            </LinearLayout>
+                android:text="@string/settings_patient_id"
+                android:textSize="30sp"
+                android:padding="10dp"/>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/physicianname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/white">
-                <TextView
-                    android:id="@+id/settingphysname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings_phys_name"
-                    android:textSize="22sp"
-                    android:padding="10dp"/>
-                <TextView
-                    android:id="@+id/physname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="22sp"
-                    android:padding="10dp"/>
-            </LinearLayout>
+                android:text="@string/settings_phys_name"
+                android:textSize="30sp"
+                android:padding="10dp"/>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/physicianphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/white">
-                <TextView
-                    android:id="@+id/settingphysphone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings_phys_phone"
-                    android:textSize="22sp"
-                    android:padding="10dp"/>
-
-                <TextView
-                    android:id="@+id/physphone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="22sp"
-                    android:padding="10dp"/>
-            </LinearLayout>
-
+                android:text="@string/settings_phys_phone"
+                android:textSize="30sp"
+                android:padding="10dp"/>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/buttonchangeinfo"
+        android:id="@+id/buttonchangepw"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:backgroundTint="@color/cadetblue"
-        android:text="@string/change_userinfo"
-        android:layout_marginTop="15dp"
+        android:text="@string/change_pw"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_below="@id/userinfo"
         android:textSize="20sp"
         app:cornerRadius="20dp"
-        app:drawableLeftCompat="@drawable/ic_person"
-        app:layout_constraintTop_toBottomOf="@id/userinfo"
+        app:drawableLeftCompat="@drawable/ic_lock"
+        app:layout_constraintTop_toBottomOf="@id/physicianphone"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
-        android:id="@+id/buttonsignout"
+        android:id="@+id/buttonchangephys"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:backgroundTint="@color/cadetblue"
-        android:text="@string/signout"
+        android:text="@string/change_phys"
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
-        android:layout_below="@id/buttonchangeinfo"
-        android:padding="10dp"
+        android:layout_below="@id/buttonchangepw"
         android:textSize="20sp"
         app:cornerRadius="20dp"
-        app:drawableLeftCompat="@drawable/ic_lock"
-        android:drawableTint="@color/white"
+        app:drawableLeftCompat="@drawable/ic_person"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

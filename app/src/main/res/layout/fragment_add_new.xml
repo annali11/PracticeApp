@@ -1,32 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".AddNewActivity">
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bottomNavigationView"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_background"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="30dp"
-        android:elevation="2dp"
-        app:menu="@menu/bottom_menu"
-        app:itemIconSize="30dp"
-        app:itemIconTint="@drawable/item_selector"
-        app:itemRippleColor="@android:color/transparent"
-        app:labelVisibilityMode="unlabeled"/>
-
+    android:orientation="vertical"
+    tools:context=".AddNewFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -43,32 +25,16 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="10dp"
                 android:text="@string/upload_data"
-                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="30sp"
-                android:id="@+id/bpheading"
-                app:layout_constraintStart_toEndOf="@id/uploadbutton"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_upload"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/uploadbutton"
-                app:tint="@color/lavender"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                app:drawableLeftCompat="@drawable/ic_upload"
+                app:drawableTint="@color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,7 +51,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="100dp"
+                        android:paddingTop="80dp"
                         android:text="@string/sys"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -193,9 +159,8 @@
         android:id="@+id/addnewButton"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
         android:layout_height="60dp"
-        android:layout_above="@id/bottomNavigationView"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/lavender"
         android:text="@string/add_new_data"
         android:textSize="25sp"
@@ -203,4 +168,4 @@
         app:drawableLeftCompat="@drawable/ic_add_circle"
         app:drawableTint="@color/white"/>
 
-</RelativeLayout>
+</LinearLayout>

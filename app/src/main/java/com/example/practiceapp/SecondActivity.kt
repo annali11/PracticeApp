@@ -2,12 +2,15 @@ package com.example.practiceapp
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.ImageButton
+import android.widget.Button
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.example.practiceapp.databinding.ActivitySecondBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SecondActivity : AppCompatActivity() {
@@ -36,8 +39,6 @@ class SecondActivity : AppCompatActivity() {
         button2 = findViewById(R.id.button2)
         button3 = findViewById(R.id.button3)
 
-        val physphone = UserInfoActivity.getPhysPhone().toString()
-
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId){
                 R.id.bottomhome -> {
@@ -45,20 +46,18 @@ class SecondActivity : AppCompatActivity() {
                 }
                 R.id.bottomAddNew -> {
                     startActivity(
-                        Intent(applicationContext, AddNewActivity::class.java))
-                    finish()
+                        Intent(applicationContext, AddNewActivity::class.java));
+                    finish();
                     return@setOnItemSelectedListener true
                 }
                 //R.id.bottomProfile -> {
-                //    startActivity(
-                //        Intent(applicationContext, ProfileActivity::class.java));
-                //    finish();
-                //    return@setOnItemSelectedListener true
+                //    replaceFragment(ProfileFragment())
+                //    true
                 //}
                 R.id.bottomSettings -> {
                     startActivity(
-                        Intent(applicationContext, SettingsActivity::class.java))
-                    finish()
+                        Intent(applicationContext, SettingsActivity::class.java));
+                    finish();
                     return@setOnItemSelectedListener true
                 }
                 else -> false
@@ -67,32 +66,33 @@ class SecondActivity : AppCompatActivity() {
 
         button1.setOnClickListener(View.OnClickListener {
             if (textinstructions.getVisibility() == View.GONE) {
-                textinstructions.setVisibility(View.VISIBLE)
-                boldtextinstructions.setVisibility(View.VISIBLE)
-                button1.setImageResource(R.drawable.arrow_up)
+                textinstructions.setVisibility(View.VISIBLE);
+                boldtextinstructions.setVisibility(View.VISIBLE);
+                button1.setImageResource(R.drawable.arrow_up);
             } else {
-                textinstructions.setVisibility(View.GONE)
-                boldtextinstructions.setVisibility(View.GONE)
-                button1.setImageResource(R.drawable.arrow_down)
+                textinstructions.setVisibility(View.GONE);
+                boldtextinstructions.setVisibility(View.GONE);
+                button1.setImageResource(R.drawable.arrow_down);
             }
         })
 
         button2.setOnClickListener(View.OnClickListener {
             if (textwarningsymptoms.getVisibility() == View.GONE) {
-                textwarningsymptoms.setVisibility(View.VISIBLE)
-                button2.setImageResource(R.drawable.arrow_up)
+                textwarningsymptoms.setVisibility(View.VISIBLE);
+                button2.setImageResource(R.drawable.arrow_up);
             } else {
-                textwarningsymptoms.setVisibility(View.GONE)
-                button2.setImageResource(R.drawable.arrow_down)
+                textwarningsymptoms.setVisibility(View.GONE);
+                button2.setImageResource(R.drawable.arrow_down);
             }
         })
 
         button3.setOnClickListener(View.OnClickListener {
+            //val dr_phone_number = phone_number.text.toString()
 
             val phone_intent = Intent(Intent.ACTION_DIAL)
 
             // REPLACE PHONE NUMBER LATER VIA THIS NOTATION "tel: $dr_phone_number"
-            phone_intent.data = Uri.parse("tel: $physphone")
+            phone_intent.data = Uri.parse("tel: 7034994045")
 
             //start activity
             startActivity(phone_intent)

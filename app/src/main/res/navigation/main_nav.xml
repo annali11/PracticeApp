@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/homeActivity">
+    app:startDestination="@id/secondActivity">
 
     <activity
         android:id="@+id/profileActivity"
@@ -11,18 +11,40 @@
         android:label="activity_profile"
         tools:layout="@layout/activity_profile" />
     <activity
-        android:id="@+id/settingsActivity"
-        android:name="com.example.practiceapp.SettingsActivity"
-        android:label="activity_settings"
-        tools:layout="@layout/activity_settings" />
-    <activity
         android:id="@+id/addNewActivity"
         android:name="com.example.practiceapp.AddNewActivity"
         android:label="activity_add_new"
-        tools:layout="@layout/activity_add_new">
-        <action
-            android:id="@+id/action_addNewFragment_to_veryHighFeedbackFragment"
-            app:destination="@id/veryHighFeedbackFragment" />
+        tools:layout="@layout/activity_add_new" />
+    <activity
+        android:id="@+id/secondActivity"
+        android:name="com.example.practiceapp.SecondActivity"
+        android:label="activity_add_new"
+        tools:layout="@layout/activity_second" />
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.example.practiceapp.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.practiceapp.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.practiceapp.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.practiceapp.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings"/>
+    <fragment
+        android:id="@+id/addNewFragment"
+        android:name="com.example.practiceapp.AddNewFragment"
+        android:label="fragment_add_new"
+        tools:layout="@layout/fragment_add_new">
         <action
             android:id="@+id/action_addNewFragment_to_highFeedbackFragment"
             app:destination="@id/highFeedbackFragment" />
@@ -32,50 +54,20 @@
         <action
             android:id="@+id/action_addNewFragment_to_lowFeedbackFragment"
             app:destination="@id/lowFeedbackFragment" />
-    </activity>
-
-    <activity
-        android:id="@+id/homeActivity"
-        android:name="com.example.practiceapp.HomeActivity"
-        android:label="activity_home"
-        tools:layout="@layout/activity_home" />
-
-
-    <fragment
-        android:id="@+id/veryHighFeedbackFragment"
-        android:name="com.example.practiceapp.addnewfragments.VeryHighFeedbackFragment"
-        android:label="fragment_very_high_feedback"
-        tools:layout="@layout/fragment_very_high_feedbac">
-        <action
-            android:id="@+id/action_veryHighFeedbackFragment_to_addNewActivity"
-            app:destination="@id/addNewActivity"/>
     </fragment>
-
     <fragment
         android:id="@+id/highFeedbackFragment"
-        android:name="com.example.practiceapp.addnewfragments.HighFeedbackFragment"
+        android:name="com.example.practiceapp.HighFeedbackFragment"
         android:label="fragment_high_feedback"
-        tools:layout="@layout/fragment_high_feedback">
-        <action
-            android:id="@+id/action_highFeedbackFragment_to_addNewActivity"
-            app:destination="@id/addNewActivity"/>
-    </fragment>
+        tools:layout="@layout/fragment_high_feedback"/>
     <fragment
         android:id="@+id/lowFeedbackFragment"
-        android:name="com.example.practiceapp.addnewfragments.LowFeedbackFragment"
+        android:name="com.example.practiceapp.LowFeedbackFragment"
         android:label="fragment_low_feedback"
-        tools:layout="@layout/fragment_low_feedback">
-        <action
-            android:id="@+id/action_lowFeedbackFragment_to_addNewActivity"
-            app:destination="@id/addNewActivity"/>
-    </fragment>
+        tools:layout="@layout/fragment_low_feedback"/>
     <fragment
         android:id="@+id/normalFeedbackFragment"
-        android:name="com.example.practiceapp.addnewfragments.NormalFeedbackFragment"
+        android:name="com.example.practiceapp.NormalFeedbackFragment"
         android:label="fragment_normal_feedback"
-        tools:layout="@layout/fragment_normal_feedback">
-        <action
-            android:id="@+id/action_normalFeedbackFragment_to_addNewActivity"
-            app:destination="@id/addNewActivity"/>
-    </fragment>
+        tools:layout="@layout/fragment_normal_feedback"/>
 </navigation>
