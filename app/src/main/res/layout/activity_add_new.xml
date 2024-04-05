@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/grey"
+            android:background="@color/lightgrey"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -57,7 +57,8 @@
                 android:textSize="30sp"
                 android:id="@+id/bpheading"
                 app:layout_constraintStart_toEndOf="@id/uploadbutton"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
                 android:layout_width="50dp"
@@ -195,12 +196,14 @@
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_height="60dp"
+        android:layout_marginTop="10dp"
         android:layout_above="@id/bottomNavigationView"
         android:backgroundTint="@color/lavender"
         android:text="@string/add_new_data"
         android:textSize="25sp"
         app:cornerRadius="20dp"
         app:drawableLeftCompat="@drawable/ic_add_circle"
-        app:drawableTint="@color/white"/>
+        app:drawableTint="@color/white"
+        android:layout_below="@id/fragmentContainer"/>
 
 </RelativeLayout>

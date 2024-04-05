@@ -34,13 +34,14 @@ class SignInActivity : AppCompatActivity() {
         signinPassword = findViewById(R.id.signin_password)
         verifyphoneButton = findViewById(R.id.verifyphone_button)
         signinButton = findViewById(R.id.signin_button)
+        var countryCode = "+1 "
 
         verifyphoneButton.setOnClickListener(View.OnClickListener {
             if (TextUtils.isEmpty(signinPhone.text.toString())) {
                 signinPhone.setError("Please enter valid phone number")
             } else {
-                val phone = "+1" + signinPhone.text.toString().trim { it <= ' ' }
-                sendVerificationCode(phone)
+                phone = countryCode + signinPhone.text.toString().trim { it <= ' ' }
+                sendVerificationCode(phone!!)
             }
         })
         signinButton.setOnClickListener(View.OnClickListener {
@@ -129,6 +130,9 @@ class SignInActivity : AppCompatActivity() {
             override fun onVerificationFailed(e: FirebaseException) {
                 // displaying error message with firebase exception.
                 Toast.makeText(this@SignInActivity, e.message, Toast.LENGTH_LONG).show()
+                val i = Intent(this@SignInActivity, HomeActivity::class.java)
+                startActivity(i)
+                finish()
             }
         }
 
@@ -137,8 +141,18 @@ class SignInActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            startActivity(Intent(this@SignInActivity, HomeActivity::class.java))
+            intent = Intent(this@SignInActivity, HomeActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }
+
+    companion object {
+
+        var phone: String? = null
+        fun getValue(): String? {
+            return phone
+        }
+    }
+
 }
