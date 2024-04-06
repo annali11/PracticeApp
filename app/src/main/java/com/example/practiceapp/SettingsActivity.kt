@@ -17,7 +17,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.bottomNavigationView.selectedItemId = R.id.bottomSettings
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
-            when (menuItem.itemId){
+            when (menuItem.itemId) {
                 R.id.bottomhome -> {
                     startActivity(
                         Intent(applicationContext, HomeActivity::class.java)
@@ -25,12 +25,14 @@ class SettingsActivity : AppCompatActivity() {
                     finish()
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.bottomAddNew -> {
                     val intent = Intent(applicationContext, AddNewActivity::class.java);
                     startActivity(intent)
                     finish()
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.bottomProfile -> {
                     startActivity(
                         Intent(applicationContext, ProfileActivity::class.java)
@@ -38,21 +40,34 @@ class SettingsActivity : AppCompatActivity() {
                     finish()
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.bottomSettings -> {
                     return@setOnItemSelectedListener true
                 }
+
                 else -> false
             }
         }
 
         val languages = resources.getStringArray(R.array.languages)
-        val arrayAdapter = ArrayAdapter(this,R.layout.language_list_item, languages)
+        val arrayAdapter = ArrayAdapter(this, R.layout.language_list_item, languages)
 
         binding.autoComplete.setAdapter(arrayAdapter)
 
         binding.patientphone.text = SignInActivity.getValue()
-        binding.patientname.text = UserInfoActivity.getName()
-        binding.physname.text = UserInfoActivity.getPhysName()
-        binding.physphone.text = UserInfoActivity.getPhysPhone()
+        binding.patientname.text = UserInfoActivity.name
+        binding.physname.text = UserInfoActivity.physname
+        binding.physphone.text = UserInfoActivity.physphone
+
+        binding.buttonchangeinfo.setOnClickListener {
+            intent = Intent(this@SettingsActivity, UserInfoActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.buttonsignout.setOnClickListener {
+            intent = Intent(this@SettingsActivity, SignInActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
