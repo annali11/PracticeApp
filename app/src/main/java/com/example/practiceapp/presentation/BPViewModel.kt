@@ -28,6 +28,10 @@ class BPViewModel(private val repository: BPRepository):ViewModel() {
     fun upsert(note: Note) = viewModelScope.launch {
         repository.upsert(note)
     }
+    fun delete(note: Note) = viewModelScope.launch {
+        repository.deleteNote(note)
+    }
+
 //    private var bpevents =
 //        isSortedByDateAdded.flatMapLatest { sort ->
 //            repository.getNotesOrderedByDateAdded()

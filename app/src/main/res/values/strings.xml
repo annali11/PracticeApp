@@ -11,7 +11,7 @@
     <string name="patient_name">Patient Name</string>
     <string name="patient_PIN">Patient PIN</string>
 
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login" translatable="false">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -78,4 +78,5 @@
         <item>Yoruba</item>
         <item>Igbo</item>
     </string-array>
+    <string name="PracticeApp" translatable="false">Practice App</string>
 </resources>

@@ -62,7 +62,7 @@ class HomeActivity : AppCompatActivity() {
         button2 = findViewById(R.id.button2)
         button3 = findViewById(R.id.button3)
 
-        val physnumber = UserInfoActivity.getPhysPhone().toString()
+        val physnumber = UserInfoActivity.physphone.toString()
 
         button1.setOnClickListener(View.OnClickListener {
             if (textinstructions.getVisibility() == View.GONE) {

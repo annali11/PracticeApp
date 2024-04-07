@@ -99,15 +99,15 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/backButtonLow"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/cadetblue"
-        android:text="@string/save_BP"
-        android:textSize="25sp"
-        app:cornerRadius="20dp"
-        app:drawableTint="@color/white"/>
+<!--    <Button-->
+<!--        android:id="@+id/backButtonLow"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:backgroundTint="@color/cadetblue"-->
+<!--        android:text="@string/save_BP"-->
+<!--        android:textSize="25sp"-->
+<!--        app:cornerRadius="20dp"-->
+<!--        app:drawableTint="@color/white"/>-->
 
 </LinearLayout>

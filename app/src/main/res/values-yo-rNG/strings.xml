@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PracticeApp</string>
+    <string name="welcome">Káàbọ̀</string>
+    <string name="login">Wọlé</string>
+    <string name="add_new_data">Fi kun</string>
+    <string name="home">Ilé</string>
+    <string name="profile">Profaili</string>
+    <string name="settings">Ètò</string>
+
+    <string name="patient_id">Ìdánimọ̀ Aláìsàn</string>
+    <string name="patient_name">Orúkọ Aláìsàn</string>
+    <string name="patient_PIN">Nọ́mbà Ìdánimọ̀ Aláìsàn</string>
+
+    <string name="prompt_email">Ímeèlì</string>
+    <string name="prompt_password">Ọ̀rọ̀ ìgbaniwọlé</string>
+    <string name="action_sign_in">Wọlé/ Forúkọsílẹ̀</string>
+    <string name="action_sign_in_short">Wọlé</string>
+    <string name="invalid_username">Orúkọ Olùmúlò yíì ò ṣé lò</string>
+    <string name="invalid_password">Ọ̀rọ̀ ìfiwọlé gbọdọ̀ jé ẹyọ ọ̀rọ̀ mẹ́fà</string>
+    <string name="login_failed">Ó kùnà láti wọlé</string>
+
+    <string name="back">Padà</string>
+    <string name="upload_data">Ìwọ̀n Ìfúnpá</string>
+    <string name="save_BP">Save + Send</string>
+    <string name="hello_blank_fragment">Ẹ ǹlẹ́</string>
+    <string name="sys">SYS</string>
+    <string name="mmhg">mmHg</string>
+    <string name="dia">DIA</string>
+    <string name="hr">HR</string>
+    <string name="bpm">BPM</string>
+    <string name="month">Oṣù</string>
+    <string name="english">Èdè Gẹẹsi</string>
+    <string name="hausa">Hausa</string>
+    <string name="language_label">Èdè</string>
+    <string name="expandable_instructions">- Ma fa oun koun, ma mu elo imu kanilara, ma moti, ma jeun, ma ṣere idaraya fun ogbon iseju ko to wọ̀n Ìfúnpá e\n\n- Ki o ma se si ounkoun ni apo ito e \n\n- Bo aso to ba wa ni eya ara ti o ti fe won ifunpa e \n\n- Wo ifunpa ni apa ti a ti gba o nimoran pe ko lo \n\n- Sinmi fun iseju marun ki o to won ifunpa e \n\n- Ma soro nigba ti o ban won ifunpa e</string>
+    <string name="expandable_instructions_bold">Ma ṣe ko lati wo Ìfúnpá nilé bo ti le je pe awon ilana nkankan o ni ṣe tele </string>
+    <string name="bp_instruction_heading">Ilana ati won ifunpa nile</string>
+    <string name="warning_heading">Apere ikilo</string>
+    <string name="warning_symptoms">- Àyà didùn\n\n
+        - Àìlèmíkanlẹ̀\n\n- ẹ̀fọ́rí líle\n\n
+        - Ayipada ni oju riran tabi ifamo ina\n\n
+        - Irora ni oke ikun\n\n
+        - Irinya ati eebi\n\n
+        - Ailera ni apa kan\n\n</string>
+    <string name="call_warning">Ti esi ifunpa re o ba ṣe deede fun ***, tabi ti o ba ṣakiyesi awon apere ti a ko soke, jowo pe dokita tabi noosi re</string>
+    <string name="call_doctor">PE DOKITA TABI NOOSI</string>
+    <string name="q15mrecheck">Tún wo ki isẹ́ju mẹẹdogun to koja</string>
+    <string name="hear_feedback">Gbọ Alaye</string>
+    <string name="low">O lo ile</string>
+    <string name="recheck_4hr">Tun wo ki wákàtí merin to koja</string>
+    <string name="name">Orúkọ: </string>
+    <string name="userinfo">INFORMATION</string>
+    <string name="settings_patient_name">Orúkọ: </string>
+    <string name="settings_patient_phone">Nọ́mbà ẹ̀rọ: </string>
+    <string name="settings_phys_name">Dokita: </string>
+    <string name="settings_phys_phone">Nọ́mbà ẹ̀rọ: </string>
+    <string name="change_userinfo">change information</string>
+    <string name="change_phys">Lo dokita ti o yatọ</string>
+    <string name="change_physphone">change physician phone</string>
+    <string name="signout">sign out</string>
+    <string name="empty_not_saved">Empty. Entry was not saved.</string>
+    <string name="q4recheck">Tun wo ki wákàtí merin to koja</string>
+    <string name="hear_audio">Gbọ Alaye</string>
+    <string name="hear_info">Gbọ Alaye</string>
+    <string name="highlabel">O lo oke </string>
+    <string name="low_bp_warning_icon">Low BP warning icon</string>
+    <string name="normallabel">O se dede</string>
+    <string name="normal_bp_icon">Normal BP Icon</string>
+    <string name="q1d_recheck">Recheck within 1 day</string>
+    <string name="critically_highlabel">CRITICALLY HIGH</string>
+    <string name="critically_high_icon">Critically high icon</string>
+    <string name="audio_feedback_for_very_high_bp_measurement">Audio Feedback for Very High BP Measurement</string>
+    <string-array name="languages">
+        <item>Èdè Gẹẹsi</item>
+        <item>Hausa</item>
+        <item>Èdè Yorùbá</item>
+        <item>Igbo</item>
+    </string-array>
+</resources>
+

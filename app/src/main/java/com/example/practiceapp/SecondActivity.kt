@@ -36,7 +36,7 @@ class SecondActivity : AppCompatActivity() {
         button2 = findViewById(R.id.button2)
         button3 = findViewById(R.id.button3)
 
-        val physphone = UserInfoActivity.getPhysPhone().toString()
+        val physphone = UserInfoActivity.physphone.toString()
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId){

@@ -26,30 +26,18 @@ import com.example.practiceapp.R
 import com.example.practiceapp.UserInfoActivity
 
 
-class HighFeedbackFragment : Fragment() {
+class HighFeedbackFragment(override val context1: Context) : BaseFeedbackFragment() {
 
     lateinit var sound_button: ImageButton
     lateinit var media_player: MediaPlayer
-    lateinit var save_button: Button
-    var MY_Permisson_Request_Code: Int = 1
-    lateinit var smsSendReceiver: BroadcastReceiver
-    lateinit var smsDeliveredReceiver: BroadcastReceiver
-    lateinit var context: Context
-    var send = "Send_SMS"
-    var delivered = "Delivered_SMS"
-
-
-    var sendPI: PendingIntent = PendingIntent.getBroadcast(context, 0, Intent(send),
-        PendingIntent.FLAG_IMMUTABLE)
-    var deliveredPI: PendingIntent = PendingIntent.getBroadcast(context,0, Intent(delivered),
-        PendingIntent.FLAG_IMMUTABLE)
+    //lateinit var context: Context
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val v = inflater.inflate(R.layout.fragment_high_feedback, container, false)
+        val v = inflater.inflate(getLayoutId(), container, false)
 
         sound_button = v.findViewById<ImageButton>(R.id.sound_button)
         media_player = MediaPlayer.create(requireContext(), R.raw.highfeedback_n)
@@ -58,186 +46,32 @@ class HighFeedbackFragment : Fragment() {
             media_player.start()
         })
 
-        save_button = v.findViewById(R.id.backButtonHigh)
-
-        save_button.setOnClickListener{
-            //This code to check if permissions are granted (used in fragment) than request them if not
-            if (activity?.checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED
-                || activity?.checkSelfPermission(Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED
-                || activity?.checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED)
-            {
-                activity?.requestPermissions(
-                    arrayOf(
-                        Manifest.permission.RECEIVE_SMS,
-                        Manifest.permission.SEND_SMS,
-                        Manifest.permission.READ_SMS), PackageManager.PERMISSION_GRANTED
-                )
-            }
-
-            val phoneNumber = UserInfoActivity.getPhysPhone()
-            val message = AddNewActivity.getBPmessage()
-
-            if (phoneNumber != null) {
-                if (message != null) {
-                    btn_sendSMS_OnClick()
-                }
-            }
-        }
-//            val subscriptionManager = context?.getSystemService(SubscriptionManager::class.java)
+//        save_button = v.findViewById(R.id.backButtonHigh)
 //
-//            SmsMessage.cre(null,phoneNumber,message,true)
-//            Toast.makeText(context, "Message Sent", Toast.LENGTH_LONG).show()
-//            activity?.finish()
+//        save_button.setOnClickListener{
+//            //This code to check if permissions are granted (used in fragment) than request them if not
+//            if (activity?.checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED)
+//            {
+//                activity?.requestPermissions(arrayOf(Manifest.permission.SEND_SMS), PackageManager.PERMISSION_GRANTED)
+//            }
+//
+//            val phoneNumber = UserInfoActivity.physphone.toString()
+//            val message = AddNewActivity.getBPmessage()
+//
+//            if (phoneNumber.isNotBlank()) {
+//                btn_sendSMS_OnClick()
+//            } else {
+//                Toast.makeText(context, "Phone number is empty", Toast.LENGTH_LONG).show()
+//            }
+//        }
         return v
     }
 
-    override fun onResume() {
-        super.onResume()
-        smsSendReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-                when (resultCode) {
-                    Activity.RESULT_OK -> Toast.makeText(activity, "SMS_send", Toast.LENGTH_SHORT).show()
-                    SmsManager.RESULT_ERROR_GENERIC_FAILURE -> Toast.makeText(activity, "Generic fail", Toast.LENGTH_SHORT).show()
-                    SmsManager.RESULT_ERROR_NO_SERVICE -> Toast.makeText(activity, "NO Service", Toast.LENGTH_SHORT).show()
-                    SmsManager.RESULT_ERROR_RADIO_OFF -> Toast.makeText(activity, "Radio off", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-        smsDeliveredReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-                when (resultCode) {
-                    Activity.RESULT_OK -> Toast.makeText(activity, "SMS_Delivered", Toast.LENGTH_SHORT).show()
-                    Activity.RESULT_CANCELED -> Toast.makeText(activity, "SMS not deliverd", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-        val listenToBroadcastsFromOtherApps = false
-        val receiverFlags = if (listenToBroadcastsFromOtherApps) {
-            ContextCompat.RECEIVER_EXPORTED
-        } else {
-            ContextCompat.RECEIVER_NOT_EXPORTED
-        }
-        registerReceiver(context,smsSendReceiver, IntentFilter(send),receiverFlags)
-        registerReceiver(context,smsDeliveredReceiver, IntentFilter(delivered),receiverFlags)
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_high_feedback
     }
 
-    override fun onPause() {
-        super.onPause()
-        context.unregisterReceiver(smsSendReceiver)
-        context.unregisterReceiver(smsDeliveredReceiver)
-    }
-
-    fun btn_sendSMS_OnClick() {
-        val phone = UserInfoActivity.getPhysPhone().toString()
-        val message = AddNewActivity.bpstring.toString()
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            activity?.let { ActivityCompat.requestPermissions(it.parent, arrayOf(Manifest.permission.SEND_SMS), MY_Permisson_Request_Code) }
-        } else {
-            val sms = context.getSystemService<SmsManager>(
-                SmsManager::class.java
-            )
-            sms.sendTextMessage(phone, null, message, sendPI, deliveredPI)
-        }
-    }
-
-//    fun sendSMS(
-//        phoneNumber: String,
-//        message: String,
-//        id: Int,
-//    ): Boolean {
-//        val subscriptionManager = context.getSystemService(SubscriptionManager::class.java)
-//        if (ActivityCompat.checkSelfPermission(context,
-//                Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED
-//        ) {
-//
-//            throw Exception("Permission not granted")
-//        }
-//
-//        val subscriptionInfo = subscriptionManager.getActiveSubscriptionInfo(id)
-//        if (subscriptionInfo != null) {
-//            val subscriptionId = subscriptionInfo.subscriptionId
-//            val smsManager = getSmsManagerForSubscriptionId(subscriptionId)
-//
-//            Log.wtf("METHOD_CHANNEL_UTILS", "Message content: $message")
-//            Log.wtf("METHOD_CHANNEL_UTILS", "Message length: ${message.length}")
-//
-//            val iSentIntent = Intent()
-//            val iDeliveryIntent = Intent()
-//
-//            val sentPendingIntent = PendingIntent.getBroadcast(
-//                context,
-//                0,
-//                iSentIntent,
-//                PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE,
-//            )
-//
-//            // Create a PendingIntent for delivery status
-//            val deliveryPendingIntent = PendingIntent.getBroadcast(
-//                context,
-//                0,
-//                iDeliveryIntent,
-//                PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE,
-//            )
-//
-//            val length = message.length
-//            if (length > 160) {
-//                val messageParts = smsManager.divideMessage(message)
-//                val sentIntentsArrayList = ArrayList<PendingIntent>()
-//                val deliveryIntentsArrayList = ArrayList<PendingIntent>()
-//
-//                for (i in messageParts.indices) {
-//                    sentIntentsArrayList.add(sentPendingIntent)
-//                    deliveryIntentsArrayList.add(deliveryPendingIntent)
-//                }
-//
-//                smsManager.sendMultipartTextMessage(
-//                    phoneNumber,
-//                    null,
-//                    messageParts,
-//                    sentIntentsArrayList,
-//                    deliveryIntentsArrayList,
-//                )
-//
-//            } else {
-//                smsManager.sendTextMessage(
-//                    phoneNumber,
-//                    null,
-//                    message,
-//                    sentPendingIntent,
-//                    deliveryPendingIntent,
-//                )
-//            }
-//
-//            // Register for SMS send action
-//            context.registerReceiver(object : BroadcastReceiver() {
-//                override fun onReceive(context: Context?, intent: Intent?) {
-//                    if (intent?.action == INTENT_SENT_SMS_ACTION) {
-//                        val bundle = intent.extras
-//                        val surveyResponseIdX = bundle?.getString("surveyResponseId") ?: ""
-//
-//                        intent.putExtra("surveyResponseId", surveyResponseIdX)
-//
-//                    }
-//                }
-//            }, IntentFilter(INTENT_SENT_SMS_ACTION))
-//
-//            // Register for delivery action
-//            context.registerReceiver(object : BroadcastReceiver() {
-//                override fun onReceive(context: Context?, intent: Intent?) {
-//                    if (intent?.action == INTENT_DELIVERED_SMS_ACTION) {
-//                        val bundle = intent.extras
-//                        val surveyResponseIdX = bundle?.getString("surveyResponseId") ?: ""
-//
-//                        intent.putExtra("surveyResponseId", surveyResponseIdX)
-//                    }
-//                }
-//            }, IntentFilter("DELIVERED_SMS_ACTION"))
-//
-//            return true
-//        } else {
-//            throw Exception("Sim not found")
-//        }
-//    }
+//    override val context1: Context
+//        get() = context
 
 }

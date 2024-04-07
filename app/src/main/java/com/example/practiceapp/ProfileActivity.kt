@@ -37,6 +37,7 @@ class ProfileActivity: AppCompatActivity() {
 //        }
 //    )
     private lateinit var bottomNavigationView: BottomNavigationView
+    private var selectedNote: Note? = null
 
     private val bpViewModel: BPViewModel by viewModels {
         BPViewModelFactory((application as BPApplication).repository)
@@ -76,7 +77,10 @@ class ProfileActivity: AppCompatActivity() {
         }
 
         val recyclerView = findViewById<RecyclerView>(R.id.bpRecyclerView)
-        val adapter = BPListAdapter()
+
+        val adapter = BPListAdapter { note ->
+            selectedNote = note
+        }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -87,9 +91,10 @@ class ProfileActivity: AppCompatActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
-            val intent = Intent(this@ProfileActivity, AddNewActivity::class.java)
-            startActivity(intent)
+            selectedNote?.let { bpViewModel.delete(it) }
+            selectedNote = null
         }
+
     }
 
     private val newBPActivityRequestCode = 1

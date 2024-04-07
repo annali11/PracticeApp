@@ -17,7 +17,7 @@ interface NoteDao {
     @Query("SELECT * FROM BP_measurements")
     fun getAll(): List<Note>
 
-    @Query("SELECT * FROM BP_measurements ORDER BY dateAdded DESC LIMIT 1")
+    @Query("SELECT * FROM BP_measurements ORDER BY dateAdded ASC LIMIT 1")
     fun getMostRecentNote(): Note
 
     @Insert

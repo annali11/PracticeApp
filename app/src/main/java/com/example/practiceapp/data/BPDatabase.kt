@@ -118,6 +118,7 @@ abstract class BPDatabase: RoomDatabase() {
                     BPDatabase::class.java,
                     "bp_database"
                 )
+                    .allowMainThreadQueries()
                     .addCallback(BPDatabaseCallback(scope))
                     .build()
                 instance = inst

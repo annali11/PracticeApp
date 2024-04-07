@@ -14,4 +14,8 @@ class BPRepository(private val noteDao: NoteDao) {
     suspend fun upsert(note: Note) {
         noteDao.upsertNote(note)
     }
+
+    suspend fun deleteNote(note: Note) {
+        noteDao.deleteNote(note)
+    }
 }
