@@ -1,16 +1,14 @@
 package com.example.practiceapp.addnewfragments
 
 import android.content.Context
-import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import com.example.practiceapp.R
+import java.util.Locale
 
 class NormalFeedbackFragment(override val context1: Context) : BaseFeedbackFragment() {
 
@@ -25,10 +23,18 @@ class NormalFeedbackFragment(override val context1: Context) : BaseFeedbackFragm
         // Inflate the layout for this fragment
         val v = inflater.inflate(getLayoutId(), container, false)
 
-//        save_button = v.findViewById<Button>(R.id.backButtonNormal)
 
         sound_button = v.findViewById<ImageButton>(R.id.sound_button)
-        media_player = MediaPlayer.create(requireContext(), R.raw.normalfeedback_n)
+
+        val language = Locale.getDefault().language
+
+        val audioClip = when (language) {
+            "en" -> R.raw.normalfeedback_en
+            "yo-rNG" -> R.raw.normalfeedback_n
+            else -> R.raw.normalfeedback_en
+        }
+
+        media_player = MediaPlayer.create(requireContext(), audioClip)
 
         sound_button.setOnClickListener(View.OnClickListener {
             media_player.start()

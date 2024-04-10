@@ -11,7 +11,7 @@ import com.example.practiceapp.data.Note
 
 class BPListAdapter(private val onClick: (Note) -> Unit) : ListAdapter<Note, BPListAdapter.BPViewHolder>(BPComparator()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BPViewHolder {
-        return BPViewHolder.create(parent)
+        return BPViewHolder.create(parent, onClick)
     }
 
     override fun onBindViewHolder(holder: BPViewHolder, position: Int) {
@@ -35,10 +35,10 @@ class BPListAdapter(private val onClick: (Note) -> Unit) : ListAdapter<Note, BPL
         }
 
         companion object {
-            fun create(parent: ViewGroup): BPViewHolder {
+            fun create(parent: ViewGroup, onClick: (Note) -> Unit): BPViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.bp_recyclerview_item, parent, false)
-                return BPViewHolder(view) {}
+                return BPViewHolder(view, onClick)
             }
         }
     }

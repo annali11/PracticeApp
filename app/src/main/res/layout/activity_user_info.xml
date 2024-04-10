@@ -67,7 +67,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/nameinput"
                     android:hint="First Last"
-                    android:textSize="25sp"/>
+                    android:textSize="25sp"
+                    android:maxLines="1"/>
             </LinearLayout>
 
             <LinearLayout
@@ -113,7 +114,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/physname"
                     android:hint="First Last"
-                    android:textSize="25sp"/>
+                    android:textSize="25sp"
+                    android:maxLines="1"/>
             </LinearLayout>
 
             <LinearLayout
@@ -136,7 +138,8 @@
                     android:id="@+id/physphone"
                     android:hint="Physician Phone #"
                     android:textSize="25sp"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:maxLines="1"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

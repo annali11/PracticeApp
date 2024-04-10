@@ -1,9 +1,7 @@
 package com.example.practiceapp
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -97,22 +95,22 @@ class ProfileActivity: AppCompatActivity() {
 
     }
 
-    private val newBPActivityRequestCode = 1
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == newBPActivityRequestCode && requestCode == Activity.RESULT_OK) {
-            data?.getStringArrayExtra(AddNewActivity.EXTRA_REPLY)?.let { reply ->
-                val bpevent = Note(0,reply[0].toInt(),reply[1].toInt(),reply[2].toInt(),reply[3],System.currentTimeMillis())
-                bpViewModel.upsert(bpevent)
-            }
-        } else {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
+//    private val newBPActivityRequestCode = 1
+//    @Deprecated("Deprecated in Java")
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (requestCode == newBPActivityRequestCode && requestCode == Activity.RESULT_OK) {
+//            data?.getStringArrayExtra(AddNewActivity.EXTRA_REPLY)?.let { reply ->
+//                val bpevent = Note(0,reply[0].toInt(),reply[1].toInt(),reply[2].toInt(),reply[3],System.currentTimeMillis())
+//                bpViewModel.upsert(bpevent)
+//            }
+//        } else {
+//            Toast.makeText(
+//                applicationContext,
+//                R.string.empty_not_saved,
+//                Toast.LENGTH_LONG
+//            ).show()
+//        }
+//    }
 }
