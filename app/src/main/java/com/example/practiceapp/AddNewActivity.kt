@@ -36,11 +36,11 @@ class AddNewActivity : AppCompatActivity() {
     var delivered = "Delivered_SMS"
 
     enum class Category(val value: String) {
-        VeryHigh("Very High"), High("Hign"), Normal("Normal"), Low("Low"), NotAvailable("Not Available")
+        VeryHigh("Very High"), High("High"), Normal("Normal"), Low("Low"), NotAvailable("Not Available")
     }
     data class BPData(var patientName: String, var sys: Int, var dia: Int, var hr: Int, var category: String, var time: String) {
         override fun toString(): String {
-            return "BP Reading:\nId= $patientName\n$sys, $dia\nHR: $hr\nCategory: $category\n Time: $time"
+            return "BP Reading:\nId: $patientName\nBP: $sys, $dia\nHR: $hr\nCategory: $category\n Time: $time"
         }
     }
 
