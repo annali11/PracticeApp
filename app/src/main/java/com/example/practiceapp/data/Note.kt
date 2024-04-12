@@ -21,6 +21,6 @@ data class Note(
     }
 
     override fun toString(): String {
-        return "BloodPressureReading(id=$id, systolic=$systolic, diastolic=$diastolic, heartRate=$heartRate, dateAdded=${getFormattedDate()})"
+        return "BloodPressureReading(id=$id, systolic=$systolic, diastolic=$diastolic, heartRate=$heartRate, category=$category dateAdded=${getFormattedDate()})"
     }
 }

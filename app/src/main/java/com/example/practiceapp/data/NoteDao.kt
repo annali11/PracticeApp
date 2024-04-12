@@ -23,6 +23,9 @@ interface NoteDao {
     @Insert
     fun insertAll(vararg readings: Note)
 
+    @Insert
+    fun insert(reading: Note): Long
+
     @Delete
     suspend fun deleteNote(note: Note)
 

@@ -77,17 +77,22 @@ class AddNewActivity : AppCompatActivity() {
             val diastolic = bpDiastolicField.text.toString().toInt()
             val heartRate = heartRateField.text.toString().toInt()
 
-            val bpData = BPData(patientname, systolic, diastolic, heartRate, Category.NotAvailable.value, nowInt)
-            val id: Long
+            val bpData = BPData(
+                patientname,
+                systolic,
+                diastolic,
+                heartRate,
+                Category.NotAvailable.value,
+                nowInt
+            )
             var bp: Note
 
             if ( systolic > 299 || diastolic > systolic || heartRate > 500) {
                 setResult(Activity.RESULT_CANCELED)
                 Toast.makeText(this, "ERROR: Redo Entry", Toast.LENGTH_SHORT).show()
             } else {
-                bp = Note(0, systolic, diastolic, heartRate,  Category.NotAvailable.value, now)
-                db.noteDao().insertAll(bp)
-                id = db.noteDao().getMostRecentNote().id.toLong()
+                bp = Note(0, systolic, diastolic, heartRate, Category.NotAvailable.value, now)
+                val id = db.noteDao().insert(bp)
 
                 if (systolic >= 160 && diastolic >= 110) {
                     setResult(Activity.RESULT_OK)
