@@ -71,6 +71,7 @@
     <string name="q1d_recheck">Recheck within 1 day</string>
     <string name="critically_highlabel">CRITICALLY HIGH</string>
     <string name="critically_high_icon">Critically high icon</string>
+    <string name="sms_send_empty" translatable="false">"Physician Phone number is empty"</string>
     <string name="audio_feedback_for_very_high_bp_measurement">Audio Feedback for Very High BP Measurement</string>
     <string-array name="languages">
         <item>English</item>

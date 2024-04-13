@@ -37,7 +37,7 @@ class SignInActivity : AppCompatActivity() {
         var countryCode = "+1 "
 
         verifyphoneButton.setOnClickListener(View.OnClickListener {
-            if (TextUtils.isEmpty(signinPhone.text.toString())) {
+            if (TextUtils.isEmpty(signinPhone.text.toString()) || signinPhone.text.toString().length != 10) {
                 signinPhone.setError("Please enter valid phone number")
             } else {
                 phone = countryCode + signinPhone.text.toString().trim { it <= ' ' }

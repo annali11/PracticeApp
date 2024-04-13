@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.practiceapp.databinding.ActivitySettingsBinding
 import kotlinx.coroutines.launch
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity(), LanguageDialogOnClickListener {
     private lateinit var binding: ActivitySettingsBinding
     var selectedLang: String = ""
     var selectedLangCode: String = ""
@@ -70,6 +70,8 @@ class SettingsActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        listener = this
 
         val languages = resources.getStringArray(R.array.languages)
         val arrayAdapter = ArrayAdapter(this, R.layout.language_list_item, languages)
@@ -135,7 +137,7 @@ class SettingsActivity : AppCompatActivity() {
         finish()
     }
 
-    fun onSubmitBtnClicked(appLanguage: AppLanguage) {
+    override fun onSubmitBtnClicked(appLanguage: AppLanguage) {
 
             if (selectedLangCode != appLanguage.selectedLangCode) {
                 lifecycleScope.launch {
@@ -144,8 +146,10 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
     }
-    interface LanguageDialogOnClickListener {
-        fun onSubmitBtnClicked(appLanguage: AppLanguage)
-    }
 
+}
+
+//have to place outside of the class to not have circular reference
+interface LanguageDialogOnClickListener {
+    fun onSubmitBtnClicked(appLanguage: AppLanguage)
 }

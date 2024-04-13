@@ -6,6 +6,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.practiceapp.data.model.LoggedInUser
+import com.example.practiceapp.data.model.UserDao
 import com.example.practiceapp.data2.migrations.MIGRATION_1_2
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -13,12 +15,13 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 @Database(
-    entities = [Note::class],
-    version = 1
+    entities = [Note::class, LoggedInUser::class],
+    version = 2
 )
 
 abstract class BPDatabase: RoomDatabase() {
     abstract fun noteDao(): NoteDao
+    abstract fun userDao(): UserDao
 //    private class BPDatabaseCallback(
 //        private val scope: CoroutineScope
 //    ) : RoomDatabase.Callback() {
@@ -98,8 +101,6 @@ abstract class BPDatabase: RoomDatabase() {
 
                 val sample = Note(0,120,80,90,"Normal",System.currentTimeMillis())
                 db.noteDao().insertAll(sample)
-
-
             }
 
             override fun onOpen(db: SupportSQLiteDatabase) {

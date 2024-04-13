@@ -9,6 +9,7 @@ data class Note(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
 
+
     @ColumnInfo(name = "systolic") val systolic: Int,
     @ColumnInfo(name = "diastolic") val diastolic: Int,
     @ColumnInfo(name = "heartRate") val heartRate: Int,

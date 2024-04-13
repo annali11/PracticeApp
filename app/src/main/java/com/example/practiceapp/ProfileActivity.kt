@@ -83,11 +83,12 @@ class ProfileActivity: AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         bpViewModel.allbpevents.observe(this) { notes ->
-            // Update the cached copy of the words in the adapter.
+            // Update the cached copy of the BPs in the adapter.
             notes.let { adapter.submitList(it) }
         }
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
+
         fab.setOnClickListener {
             selectedNote?.let { bpViewModel.delete(it) }
             selectedNote = null

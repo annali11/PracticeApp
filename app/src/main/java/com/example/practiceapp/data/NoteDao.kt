@@ -14,6 +14,9 @@ interface NoteDao {
     @Upsert
     suspend fun upsertNote(note: Note)
 
+    @Insert
+    fun insert(note: Note): Long
+
     @Query("SELECT * FROM BP_measurements")
     fun getAll(): List<Note>
 

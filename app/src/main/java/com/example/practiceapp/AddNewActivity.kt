@@ -63,7 +63,7 @@ class AddNewActivity : AppCompatActivity() {
         val applicationScope = CoroutineScope(SupervisorJob())
 
         //addnewbutton = findViewById(R.id.addnewButton)
-        val db = BPDatabase.getDatabase(this,applicationScope)
+        val db = BPDatabase.getDatabase(this, applicationScope)
         val bpSystolicField = binding.bpsystolic
         val bpDiastolicField = binding.bpdiastolic
         val heartRateField = binding.heartrate
@@ -78,7 +78,6 @@ class AddNewActivity : AppCompatActivity() {
             val heartRate = heartRateField.text.toString().toInt()
 
             val bpData = BPData(patientname, systolic, diastolic, heartRate, Category.NotAvailable.value, nowInt)
-            val id: Long
             var bp: Note
 
             if ( systolic > 299 || diastolic > systolic || heartRate > 500) {
@@ -86,8 +85,7 @@ class AddNewActivity : AppCompatActivity() {
                 Toast.makeText(this, "ERROR: Redo Entry", Toast.LENGTH_SHORT).show()
             } else {
                 bp = Note(0, systolic, diastolic, heartRate,  Category.NotAvailable.value, now)
-                db.noteDao().insertAll(bp)
-                id = db.noteDao().getMostRecentNote().id.toLong()
+                val id = db.noteDao().insert(bp)
 
                 if (systolic >= 160 && diastolic >= 110) {
                     setResult(Activity.RESULT_OK)
@@ -118,7 +116,7 @@ class AddNewActivity : AppCompatActivity() {
             if (phoneNumber.isNotBlank()) {
                 btn_sendSMS_OnClick()
             } else {
-                Toast.makeText(context, "Phone number is empty", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Physician Phone number is empty", Toast.LENGTH_LONG).show()
             }
 
         })
