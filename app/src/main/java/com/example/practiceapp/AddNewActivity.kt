@@ -163,7 +163,7 @@ class AddNewActivity : AppCompatActivity() {
     }
 
     fun btn_sendSMS_OnClick() {
-        var MY_Permisson_Request_Code: Int = 1
+        val MY_Permisson_Request_Code: Int = 1
         var sendPI: PendingIntent = PendingIntent.getBroadcast(context, 0, Intent(send),
             PendingIntent.FLAG_IMMUTABLE)
         var deliveredPI: PendingIntent = PendingIntent.getBroadcast(context,0, Intent(delivered),

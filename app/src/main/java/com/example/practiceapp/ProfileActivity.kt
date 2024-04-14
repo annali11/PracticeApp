@@ -10,7 +10,6 @@ import com.example.practiceapp.data.Note
 import com.example.practiceapp.presentation.BPViewModel
 import com.example.practiceapp.presentation.BPViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 //import com.example.practiceapp.CalenderUtils.daysInMonthArray
 //import com.example.practiceapp.CalenderUtils.monthYearFromDate
@@ -87,12 +86,12 @@ class ProfileActivity: AppCompatActivity() {
             notes.let { adapter.submitList(it) }
         }
 
-        val fab = findViewById<FloatingActionButton>(R.id.fab)
-
-        fab.setOnClickListener {
-            selectedNote?.let { bpViewModel.delete(it) }
-            selectedNote = null
-        }
+//        val fab = findViewById<FloatingActionButton>(R.id.fab)
+//
+//        fab.setOnClickListener {
+//            selectedNote?.let { bpViewModel.delete(it) }
+//            selectedNote = null
+//        }
 
     }
 

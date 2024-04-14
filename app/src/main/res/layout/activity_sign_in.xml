@@ -66,9 +66,12 @@
                 android:layout_marginTop="30dp"
                 android:padding="8dp"
                 android:hint="One-Time Password"
+                android:inputType="number"
                 android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="8dp"
-                android:textColor="@color/darkgrey"/>
+                android:textColor="@color/darkgrey"
+                android:maxLines="1"
+                android:maxLength="5"/>
 
             <Button
                 android:layout_width="match_parent"
